@@ -1,0 +1,50 @@
+name: Registro diario de actividad
+
+on:
+  schedule:
+    # Diario ~09:00 Chile (aprox. invierno UTC-3 → 12:00 UTC). Ajusta a tu zona.
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: activity-log
+  cancel-in-progress: true
+
+jobs:
+  update-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Actualizar registro (5 días aleatorios por semana ISO)
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SERVER_URL: ${{ github.server_url }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/update_activity.py
+
+      - name: Commit y push si hay cambios
+        env:
+          ACTIVITY_GIT_NAME: ${{ secrets.ACTIVITY_GIT_NAME }}
+          ACTIVITY_GIT_EMAIL: ${{ secrets.ACTIVITY_GIT_EMAIL }}
+        run: |
+          if [ -n "${ACTIVITY_GIT_NAME}" ] && [ -n "${ACTIVITY_GIT_EMAIL}" ]; then
+            git config user.name "${ACTIVITY_GIT_NAME}"
+            git config user.email "${ACTIVITY_GIT_EMAIL}"
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          fi
+          git add data/activity-log.md data/schedules/
+          if git diff --staged --quiet; then
+            echo "Sin cambios; no se crea commit."
+          else
+            git commit -m "chore: entrada de registro de ejecución programada"
+            git push
+          fi
