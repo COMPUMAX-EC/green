@@ -30,3 +30,4 @@ Cada fila enlaza con una ejecución real de GitHub Actions.
 | 2026-05-19T14:33:26+00:00 | [26104076933](https://github.com/COMPUMAX-EC/green/actions/runs/26104076933) | `2026-W21` | 2 |
 | 2026-05-21T14:38:31+00:00 | [26232923393](https://github.com/COMPUMAX-EC/green/actions/runs/26232923393) | `2026-W21` | 4 |
 | 2026-05-22T14:12:58+00:00 | [26292860846](https://github.com/COMPUMAX-EC/green/actions/runs/26292860846) | `2026-W21` | 5 |
+| 2026-05-24T12:57:41+00:00 | [26361885405](https://github.com/COMPUMAX-EC/green/actions/runs/26361885405) | `2026-W21` | 7 |
