@@ -122,3 +122,4 @@ Cada fila enlaza con una ejecución real de GitHub Actions.
 | 2026-09-26T15:18:25+00:00 | [36251467029](https://github.com/COMPUMAX-EC/green/actions/runs/36251467029) | `2026-W39` | 6 |
 | 2026-09-27T15:56:47+00:00 | [36331391503](https://github.com/COMPUMAX-EC/green/actions/runs/36331391503) | `2026-W39` | 7 |
 | 2026-09-28T18:53:53+00:00 | [36468417101](https://github.com/COMPUMAX-EC/green/actions/runs/36468417101) | `2026-W40` | 1 |
+| 2026-09-29T17:11:47+00:00 | [36603204630](https://github.com/COMPUMAX-EC/green/actions/runs/36603204630) | `2026-W40` | 2 |
